@@ -19,7 +19,7 @@ class DatabaseHelper  (context: Context) :
         onCreate(db)
     }
 
-    fun insertData(name: String, detail: String, toDoDate: String, toDoTime: Int, complete: Int) {
+    fun insertData(name: String, detail: String, toDoDate: String, toDoTime: String, complete: Int) {
         val db = this.writableDatabase
         val contentValues = ContentValues()
         contentValues.put(COL_2, name)
@@ -30,7 +30,7 @@ class DatabaseHelper  (context: Context) :
         db.insert(TABLE_NAME, null, contentValues)
     }
 
-    fun updateData(id: String, name: String, detail: String, toDoDate: String, toDoTime: Int, complete: Int):
+    fun updateData(id: String, name: String, detail: String, toDoDate: String, toDoTime: String, complete: Int):
             Boolean {
         val db = this.writableDatabase
         val contentValues = ContentValues()

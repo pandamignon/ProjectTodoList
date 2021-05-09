@@ -29,7 +29,7 @@
         android:layout_marginTop="428dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Detail"
+        android:text="Time"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="@+id/imageView" />
 

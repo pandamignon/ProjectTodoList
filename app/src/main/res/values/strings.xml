@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">ProjectTodoList</string>
+    <string-array name="menu">
+        <item>menubar</item>
+        <item>profile</item>
+        <item>setting</item>
+        <item>about</item>
+    </string-array>
 </resources>

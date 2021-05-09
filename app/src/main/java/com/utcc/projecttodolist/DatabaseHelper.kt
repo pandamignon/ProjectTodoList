@@ -5,10 +5,15 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import android.net.Uri
+import java.util.*
 
 class DatabaseHelper  (context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, 1) {
+
+    val calendar = Calendar.getInstance()
+    val year = calendar.get(Calendar.YEAR)
+    val month = calendar.get(Calendar.MONTH)
+    val day = calendar.get(Calendar.DAY_OF_MONTH)
 
     override fun onCreate(db: SQLiteDatabase){
             db.execSQL("CREATE TABLE $TABLE_NAME (ID INTEGER PRIMARY KEY AUTOINCREMENT,"+
@@ -49,10 +54,17 @@ class DatabaseHelper  (context: Context) :
         return db.delete(TABLE_NAME,"ID = ?", arrayOf(id))
     }
 
-    val allData : Cursor
+    val todayData : Cursor
         get() {
             val db = this.writableDatabase
             val res = db.rawQuery("SELECT * FROM " + TABLE_NAME, null)
+            return res
+        }
+
+    val otherData : Cursor
+        get() {
+            val db = this.writableDatabase
+            val res = db.rawQuery("SELECT * FROM " + TABLE_NAME + "(WHERE TODODATE = '${day}/${month}/$year') AND COMPLETE = 0", null)
             return res
         }
 
@@ -62,8 +74,8 @@ class DatabaseHelper  (context: Context) :
         val COL_1 = "ID"
         val COL_2 = "NAME"
         val COL_3 = "DETAIL"
-        val COL_4 = "DATE"
-        val COL_5 = "TIME"
+        val COL_4 = "TODODATE "
+        val COL_5 = "TODOTIME"
         val COL_6 = "COMPLETE"
         var user = "User"
         var link = ""

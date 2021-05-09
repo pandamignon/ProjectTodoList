@@ -13,6 +13,7 @@ class AddTodoList: AppCompatActivity() {
 
     private lateinit var toDoDate: Triple<Int?, Int?, Int?>
     var dateStr: String = """"""
+    internal val database = DatabaseHelper(this@AddTodoList)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,20 +28,25 @@ class AddTodoList: AppCompatActivity() {
         val addTime = findViewById<ImageButton>(R.id.imageButton5)
         val timeText = findViewById<TextView>(R.id.textView12)
 
-        val database = DatabaseHelper(this@AddTodoList)
+
 
         cancel.setOnClickListener {
             val intent = Intent(this@AddTodoList, MainActivity::class.java)
             startActivity(intent)
         }
         saveBtn.setOnClickListener {
-            database.insertData(
-                title.text.toString(),
-                detail.text.toString(),
-                dateText.text.toString(),
-                timeText.text.toString(),
-                0
-            )
+            try {
+                database.insertData(
+                    title.text.toString(),
+                    detail.text.toString(),
+                    dateText.text.toString(),
+                    timeText.text.toString(),
+                    0
+                )
+            }catch (e: Exception){
+                e.printStackTrace()
+                showToast(e.message.toString())
+            }
 
             val intent = Intent(this@AddTodoList, MainActivity::class.java)
             startActivity(intent)
@@ -74,5 +80,8 @@ class AddTodoList: AppCompatActivity() {
                 true
             ).show()
         }
+    }
+    fun showToast(text: String){
+        Toast.makeText(this@AddTodoList, text, Toast.LENGTH_LONG).show()
     }
 }

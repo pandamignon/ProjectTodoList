@@ -49,6 +49,16 @@ class DatabaseHelper  (context: Context) :
         return true
     }
 
+    fun updateComplete(id: String, complete: Int):
+            Boolean {
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put(COL_1, id)
+        contentValues.put(COL_6, complete)
+        db.update(TABLE_NAME, contentValues, "ID = ?", arrayOf(id))
+        return true
+    }
+
     fun deleteData(id : String) : Int {
         val db = this.writableDatabase
         return db.delete(TABLE_NAME,"ID = ?", arrayOf(id))
@@ -61,12 +71,8 @@ class DatabaseHelper  (context: Context) :
             return res
         }
 
-    val otherData : Cursor
-        get() {
-            val db = this.writableDatabase
-            val res = db.rawQuery("SELECT * FROM " + TABLE_NAME + "(WHERE TODODATE = '${day}/${month}/$year') AND COMPLETE = 0", null)
-            return res
-        }
+
+
 
     companion object {
         val DATABASE_NAME = "todo.db"

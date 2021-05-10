@@ -30,7 +30,7 @@ class EditPage: AppCompatActivity() {
 
 
         cancel.setOnClickListener {
-            val intent = Intent(this@EditPage, Profile::class.java)
+            val intent = Intent(this@EditPage, DetailPage::class.java)
             startActivity(intent)
         }
         saveBtn.setOnClickListener {
@@ -47,7 +47,7 @@ class EditPage: AppCompatActivity() {
                 e.printStackTrace()
                 showToast(e.message.toString())
             }
-            val intent = Intent(this@EditPage, Profile::class.java)
+            val intent = Intent(this@EditPage, DetailPage::class.java)
             startActivity(intent)
         }
         addDate.setOnClickListener {

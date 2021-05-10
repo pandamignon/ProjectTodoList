@@ -59,12 +59,12 @@ class MainActivity : AppCompatActivity() {
     fun showToday() {
         val res = dbHelper.todayData
         if (res.count == 0) {
-            Toast.makeText(this@MainActivity,"No Data",Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this@MainActivity,"No Data",Toast.LENGTH_SHORT).show()
         }else{
             res.moveToFirst()
             val adapter = Adapter(res)
             firstRecycler.adapter = adapter
-            Toast.makeText(this,"There is "+res.getString(res.getColumnIndex("NAME")),Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this,"There is "+res.getString(res.getColumnIndex("NAME")),Toast.LENGTH_SHORT).show()
         }
     }
 }
